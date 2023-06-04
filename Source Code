@@ -1,0 +1,28 @@
+int soilMoistureValue = 0;
+int percentage = 0;
+void setup() {
+  pinMode(3, OUTPUT);
+  Serial.begin(9600);
+  Serial.print("Reading from the sensor :\n");
+  delay(3000);
+}
+void loop() {
+soilMoistureValue = analogRead(A0);
+Serial.println(percentage);
+percentage = map(soilMoistureValue, 440, 1023, 100, 0);
+delay(2000);
+if(percentage < 10)
+{
+   Serial.println("pump on");
+   delay(3000);
+   digitalWrite(3, LOW);
+
+}
+if(percentage > 90)
+{
+   Serial.println("pump off");
+   delay(3000);
+   digitalWrite(3, HIGH);
+
+}
+}
